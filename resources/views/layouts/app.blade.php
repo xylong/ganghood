@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', '方寸江湖') - 首页</title>
+    <meta name="description" content="@yield('description', 'Ganghood 爱好者社区')" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
