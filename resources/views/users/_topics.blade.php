@@ -1,19 +1,16 @@
-@if (count($replies))
+@if (count($topics))
 
 <ul class="list-group">
-    @foreach ($replies as $reply)
+    @foreach ($topics as $topic)
         <li class="list-group-item">
-            <a href="{{ $reply->topic->link(['#reply' . $reply->id]) }}">
-                {{ $reply->topic->title }}
+            <a href="{{ $topic->link() }}">
+                {{ $topic->title }}
             </a>
-
-            <div class="reply-content" style="margin: 6px 0;">
-                {!! $reply->content !!}
-            </div>
-
-            <div class="meta">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> 回复于 {{ $reply->created_at->diffForHumans() }}
-            </div>
+            <span class="meta pull-right">
+                {{ $topic->reply_count }} 回复
+                <span> ⋅ </span>
+                {{ $topic->created_at->diffForHumans() }}
+            </span>
         </li>
     @endforeach
 </ul>
@@ -23,4 +20,4 @@
 @endif
 
 {{-- 分页 --}}
-{!! $replies->appends(Request::except('page'))->render() !!}
+{!! $topics->render() !!}
