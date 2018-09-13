@@ -59,6 +59,9 @@ return array(
      *	)
      */
     'menu' => [
+        '站点管理' => [
+            'settings.site',
+        ],
         '用户与权限' => [
             'users',
             'roles',
