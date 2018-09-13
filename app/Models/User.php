@@ -42,6 +42,24 @@ class User extends Authenticatable
         return $this->hasMany(Reply::class);
     }
 
+    public function setPasswordAttribute($var)
+    {
+        if (strlen($var) !== 60) {
+            $var = bcrypt($var);
+        }
+
+        $this->attributes['password'] = $var;
+    }
+
+    public function setAvatarAttribute($path)
+    {
+        if (!starts_with($path, 'http')) {
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+        }
+
+        $this->attributes['avatar'] = $path;
+    }
+
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
